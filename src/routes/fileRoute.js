@@ -1,12 +1,14 @@
 import { Router} from "express"
-import { fileUpload } from "../controllers/fileController.js";
+import { uploadFile, getFile} from "../controllers/fileController.js";
+import { upload } from "../utils/multer.js";
 
 
 const fileRoute = Router()
 
 
 //define routes
-fileRoute.post("/upload",fileUpload)
+fileRoute.post("/upload", upload.single('file'), uploadFile)
+fileRoute.get('/getfile/:fileName', getFile);
 
 
 

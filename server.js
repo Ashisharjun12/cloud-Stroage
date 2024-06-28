@@ -5,7 +5,7 @@ const startServer = async () => {
   const port = _config.PORT ?? 4000;
 
   app.get("/", (req, res) => {
-    console.log("server is working....");
+    res.json({msg:"server is working...."});
   });
 
   app.get("/health", (req, res) => {
