@@ -11,7 +11,7 @@ export const sendFileToTelegram = async (filePath, fileName) => {
             `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/getUpdates`
         );
         
-        // Assuming you want to send the file to the latest chat that sent a message
+        
         const latestChat = updatesResponse.data.result[0].message.chat;
         const chatId = latestChat.id;
 
