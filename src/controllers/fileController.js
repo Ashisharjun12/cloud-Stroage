@@ -9,11 +9,12 @@ export const uploadFile = async (req, res) => {
         }
 
         const response = await sendFileToTelegram(file.path, file.filename);
-        const fileLink = await getTelegramFileLink(response.result.document.file_id);
+        const fileLink = await getTelegramFileLink(response.result.sticker.thumbnail.file_id);
 
         res.status(200).json({
             message: 'File uploaded successfully',
             fileLink,
+            response
         });
     } catch (error) {
         res.status(500).json({ 
