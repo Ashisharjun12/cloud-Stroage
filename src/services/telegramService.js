@@ -10,9 +10,11 @@ export const sendFileToTelegram = async (filePath, fileName) => {
         const updatesResponse = await axios.get(
             `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/getUpdates`
         );
-        
-        
-        const latestChat = updatesResponse.data.result[0].message.chat;
+
+        const latestChat = updatesResponse.data.result[0]?.message?.chat;
+        if (!latestChat) {
+            throw new Error('No chat found in updates.');
+        }
         const chatId = latestChat.id;
 
         const form = new FormData();
@@ -31,7 +33,7 @@ export const sendFileToTelegram = async (filePath, fileName) => {
         
         return response.data;
     } catch (error) {
-        console.error('Error uploading to Telegram:', error.response ? error.response.data : error.message);
+        console.error('Error uploading to Telegram:', error.response?.data || error.message);
         throw error;
     }
 };

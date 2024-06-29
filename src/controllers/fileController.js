@@ -16,9 +16,10 @@ export const uploadFile = async (req, res) => {
             fileLink,
             response
         });
+        console.log("respone" , response , "filelink" , fileLink)
     } catch (error) {
         res.status(500).json({ 
-            message: 'An error occurred.', 
+            message: 'An error occurred uploading', 
             error: error.response ? error.response.data : error.message 
         });
     }
