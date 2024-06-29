@@ -9,7 +9,15 @@ export const uploadSingleFile = async (req, res) => {
         }
 
         const response = await sendFileToTelegram(file.path, file.filename);
-        const fileLink = await getTelegramFileLink(response.result.sticker.thumbnail.file_id);
+        const fileId = response.result.document?.file_id || response.result.sticker?.file_id;
+
+        if (!fileId) {
+            return res.status(400).json({ message: 'File ID not found.' });
+        }
+       
+        
+        const fileLink = await getTelegramFileLink(fileId);
+        // const fileLink = await getTelegramFileLink(response.result.document.file_id);
 
         fs.unlinkSync(file.path);
 
@@ -36,7 +44,15 @@ export const uploadMultipleFile = async(req,res)=>{
 
         const responses = await Promise.all(files.map(async (file) => {
             const response = await sendFileToTelegram(file.path, file.originalname);
-            const fileLink = await getTelegramFileLink(response.result.sticker.thumbnail.file_id);
+            const fileId = response.result.document?.file_id || response.result.sticker?.file_id;
+
+            if (!fileId) {
+                return res.status(400).json({ message: 'File ID not found.' });
+            }
+
+            const fileLink = await getTelegramFileLink(fileId);
+            
+            // const fileLink = await getTelegramFileLink(response.result.sticker.thumbnail.file_id);
 
             fs.unlinkSync(file.path);
             return { fileLink, response };
