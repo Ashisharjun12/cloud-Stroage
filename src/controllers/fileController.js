@@ -18,9 +18,10 @@ export const uploadSingleFile = async (req, res) => {
             fileLink,
             response
         });
+        console.log("respone" , response , "filelink" , fileLink)
     } catch (error) {
         res.status(500).json({ 
-            message: 'An error occurred while uploading.', 
+            message: 'An error occurred.', 
             error: error.response ? error.response.data : error.message 
         });
     }
