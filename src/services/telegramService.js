@@ -29,7 +29,6 @@ export const sendFileToTelegram = async (filePath, fileName) => {
             {
                 headers: form.getHeaders(),
             }
-            
         );
         
         return response.data;

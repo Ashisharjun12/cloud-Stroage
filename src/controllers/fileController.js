@@ -3,7 +3,6 @@ import { sendFileToTelegram, getTelegramFileLink } from '../services/telegramSer
 
 export const uploadSingleFile = async (req, res) => {
     try {
-        
         const file = req.file;
         if (!file) {
             return res.status(400).json({ message: 'No file uploaded.' });
@@ -32,7 +31,8 @@ export const uploadSingleFile = async (req, res) => {
     } catch (error) {
         res.status(500).json({ 
             message: 'An error occurred.', 
-            error: error.response ? error.response.data : error.message 
+            error: error.response ? error.response.data : error.message ,
+            
         });
     }
 };
