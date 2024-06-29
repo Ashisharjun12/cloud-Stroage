@@ -3,6 +3,7 @@ import errorHandler from "./middlewares/ErrorHandler.js";
 import photoRoute from "./routes/photoRoute.js";
 import fileRoute from "./routes/fileRoute.js";
 import videoRouter from "./routes/videoRoute.js";
+import audioRoute from "./routes/audioRoute.js";
 
 const app = express();
 
@@ -17,6 +18,7 @@ app.use(errorHandler);
 app.use("/api/v1/photo", photoRoute);
 app.use("/api/v1/file" , fileRoute);
 app.use('/api/v1/video',videoRouter)
+app.use('/api/v1/audio',audioRoute)
 
 
 

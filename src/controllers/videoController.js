@@ -29,7 +29,7 @@ export const uploadSingleVideo = async (req, res) => {
     console.log("response", response, "filelink", fileLink);
   } catch (error) {
     res.status(StatusCodes.BAD_GATEWAY).json({
-      message: "An error occurred.",
+      message: "An error occurred from upload single video.",
       error: error.response ? error.response.data : error.message,
     });
   }
