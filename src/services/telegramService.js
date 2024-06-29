@@ -29,6 +29,7 @@ export const sendFileToTelegram = async (filePath, fileName) => {
             {
                 headers: form.getHeaders(),
             }
+            
         );
         
         return response.data;
@@ -44,6 +45,7 @@ export const getTelegramFileLink = async (fileId) => {
             `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/getFile?file_id=${fileId}`
         );
         const filePath = response.data.result.file_path;
+        
         return `https://api.telegram.org/file/bot${TELEGRAM_BOT_TOKEN}/${filePath}`;
     } catch (error) {
         console.error('Error retrieving file link from Telegram:', error.response ? error.response.data : error.message);

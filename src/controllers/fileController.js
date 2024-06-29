@@ -3,6 +3,7 @@ import { sendFileToTelegram, getTelegramFileLink } from '../services/telegramSer
 
 export const uploadSingleFile = async (req, res) => {
     try {
+        
         const file = req.file;
         if (!file) {
             return res.status(400).json({ message: 'No file uploaded.' });
@@ -20,6 +21,7 @@ export const uploadSingleFile = async (req, res) => {
         // const fileLink = await getTelegramFileLink(response.result.document.file_id);
 
         fs.unlinkSync(file.path);
+        
 
         res.status(200).json({
             message: 'File uploaded successfully',
@@ -51,7 +53,7 @@ export const uploadMultipleFile = async(req,res)=>{
             }
 
             const fileLink = await getTelegramFileLink(fileId);
-            
+
             // const fileLink = await getTelegramFileLink(response.result.sticker.thumbnail.file_id);
 
             fs.unlinkSync(file.path);
